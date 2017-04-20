@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25" zv="Cache for Windows (x86-64) 2016.2 (Build 736U)" ts="2017-04-20 08:29:33">
+<CSP name="Welcome.csp" application="/widgetsdirect/"><![CDATA[
+<html ng-app="WidgetsDirect">
+<head>
+
+<!-- Put your page Title here -->
+<title>	Widgets Direct </title>
+
+</head>
+
+<body ng-controller="PageController">
+
+		<!-- Put your page code here -->
+		{{message}}
+		
+		<hr>
+		<table>
+			<tr ng-repeat="widget in widgets">
+				<td>{{widget.Id}}</td>
+				<td>{{widget.Name}}</td>
+			</tr>
+		</table>
+		<hr>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="widgetmaster.js"></script>		
+</body>
+ 
+</html>
+]]></CSP>
+</Export>
