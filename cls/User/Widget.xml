@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Export generator="Cache" version="25" zv="Cache for Windows (x86-64) 2016.2 (Build 736U)" ts="2017-04-21 09:36:16">
+<Export generator="Cache" version="25" zv="Cache for Windows (x86-64) 2016.2 (Build 736U)" ts="2017-04-24 08:52:17">
 <Class name="User.Widget">
 <Description>
 Persistent class to hold Widgets</Description>
 <Super>%Persistent</Super>
-<TimeChanged>64394,30972.878644</TimeChanged>
+<TimeChanged>64397,28854.640889</TimeChanged>
 <TimeCreated>64394,30328.233029</TimeCreated>
 
 <Property name="Name">
@@ -24,6 +24,13 @@ Persistent class to hold Widgets</Description>
 <Type>%Integer</Type>
 </Property>
 
+<Property name="Accessories">
+<Type>User.WidgetAccessoryLink</Type>
+<Cardinality>many</Cardinality>
+<Inverse>Widget</Inverse>
+<Relationship>1</Relationship>
+</Property>
+
 <Method name="toJSON">
 <ReturnType>%String</ReturnType>
 <Implementation><![CDATA[
@@ -34,6 +41,15 @@ Persistent class to hold Widgets</Description>
 	set jsonReturn.Description 		= ..Description
 	set jsonReturn.Price			= ..Price
 	set jsonReturn.Quantity 		= ..Quantity
+	
+	set accessorykey = ""
+    set accessoryList = []
+      Do {
+          set accLink = ..Accessories.GetNext(.accessorykey)
+          If (accLink '= "") { do accessoryList.%Push(accLink.Accessory.toJSON()) }
+      } While (accessorykey '= "")
+      set jsonReturn.Accessories = accessoryList
+	
 	quit jsonReturn
 ]]></Implementation>
 </Method>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25" zv="Cache for Windows (x86-64) 2016.2 (Build 736U)" ts="2017-04-24 08:52:41">
+<Class name="User.WidgetAccessoryLink">
+<Super>%Persistent</Super>
+<TimeChanged>64397,27894.53224</TimeChanged>
+<TimeCreated>64397,27703.426579</TimeCreated>
+
+<Property name="Widget">
+<Type>User.Widget</Type>
+<Cardinality>one</Cardinality>
+<Inverse>Accessories</Inverse>
+<Relationship>1</Relationship>
+</Property>
+
+<Property name="Accessory">
+<Type>User.WidgetAccessory</Type>
+<Cardinality>one</Cardinality>
+<Inverse>Widgets</Inverse>
+<Relationship>1</Relationship>
+</Property>
+
+<Index name="WidgetIndex">
+<Properties>Widget</Properties>
+</Index>
+
+<Index name="AccessoryIndex">
+<Properties>Accessory</Properties>
+</Index>
+
+<Storage name="Default">
+<Type>%Library.CacheStorage</Type>
+<DataLocation>^User.WidgetAccessoryLinkD</DataLocation>
+<DefaultData>WidgetAccessoryLinkDefaultData</DefaultData>
+<IdLocation>^User.WidgetAccessoryLinkD</IdLocation>
+<IndexLocation>^User.WidgetAccessoryLinkI</IndexLocation>
+<StreamLocation>^User.WidgetAccessoryLinkS</StreamLocation>
+<Data name="WidgetAccessoryLinkDefaultData">
+<Value name="1">
+<Value>%%CLASSNAME</Value>
+</Value>
+<Value name="2">
+<Value>Widget</Value>
+</Value>
+<Value name="3">
+<Value>Accessory</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+</Export>
