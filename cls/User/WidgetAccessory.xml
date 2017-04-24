@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Export generator="Cache" version="25" zv="Cache for Windows (x86-64) 2016.2 (Build 736U)" ts="2017-04-24 08:52:31">
+<Export generator="Cache" version="25" zv="Cache for Windows (x86-64) 2016.2 (Build 736U)" ts="2017-04-24 10:03:50">
 <Class name="User.WidgetAccessory">
 <Description>
 Class to hold our widget accessories</Description>
 <Super>%Persistent</Super>
-<TimeChanged>64397,29056.771444</TimeChanged>
+<TimeChanged>64397,34693.014965</TimeChanged>
 <TimeCreated>64397,27419.255968</TimeCreated>
 
 <Property name="Name">
@@ -48,6 +48,7 @@ Class to hold our widget accessories</Description>
 </Property>
 
 <Method name="toJSON">
+<FormalSpec>traverseRelationships:%Boolean=0</FormalSpec>
 <ReturnType>%String</ReturnType>
 <Implementation><![CDATA[
 	
@@ -61,6 +62,17 @@ Class to hold our widget accessories</Description>
 	set jsonReturn.InProduction		 = ..InProduction
 	set jsonReturn.Import			 = ..Import
 	set jsonReturn.SKU				 = ..SKU
+	
+	if traverseRelationships {
+	set widgetkey = ""
+    set widgetList = []
+      Do {
+          set widgetLink = ..Widgets.GetNext(.widgetkey)
+          If (widgetLink '= "") { do widgetList.%Push(widgetLink.Widget.toJSON()) }
+      } While (widgetkey '= "")
+      set jsonReturn.Widgets = widgetList
+	}
+	
 	quit jsonReturn
 ]]></Implementation>
 </Method>

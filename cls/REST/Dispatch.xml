@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Export generator="Cache" version="25" zv="Cache for Windows (x86-64) 2016.2 (Build 736U)" ts="2017-04-21 09:35:48">
+<Export generator="Cache" version="25" zv="Cache for Windows (x86-64) 2016.2 (Build 736U)" ts="2017-04-24 10:03:06">
 <Class name="REST.Dispatch">
 <Description>
 This is our Dispatch class for all REST Services</Description>
 <Super>%CSP.REST</Super>
-<TimeChanged>64394,31168.673037</TimeChanged>
+<TimeChanged>64397,34806.129235</TimeChanged>
 <TimeCreated>64390,31162.175681</TimeCreated>
 
 <XData name="UrlMap">
@@ -41,7 +41,7 @@ This is our Dispatch class for all REST Services</Description>
     For { &SQL(FETCH WidgetCurs)
     	  Quit:SQLCODE
     	  set widgetObj = ##class(User.Widget).%OpenId(Id)
-    	  do widgetAry.%Push(widgetObj.toJSON())
+    	  do widgetAry.%Push(widgetObj.toJSON(1))
 	    }
     &SQL(CLOSE WidgetCurs)
 	SET retObj.Widgets = widgetAry

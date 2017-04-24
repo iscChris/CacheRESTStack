@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Export generator="Cache" version="25" zv="Cache for Windows (x86-64) 2016.2 (Build 736U)" ts="2017-04-24 08:52:17">
+<Export generator="Cache" version="25" zv="Cache for Windows (x86-64) 2016.2 (Build 736U)" ts="2017-04-24 10:03:34">
 <Class name="User.Widget">
 <Description>
 Persistent class to hold Widgets</Description>
 <Super>%Persistent</Super>
-<TimeChanged>64397,28854.640889</TimeChanged>
+<TimeChanged>64397,34758.749376</TimeChanged>
 <TimeCreated>64394,30328.233029</TimeCreated>
 
 <Property name="Name">
@@ -32,6 +32,7 @@ Persistent class to hold Widgets</Description>
 </Property>
 
 <Method name="toJSON">
+<FormalSpec>traverseRelationships:%Boolean=0</FormalSpec>
 <ReturnType>%String</ReturnType>
 <Implementation><![CDATA[
 	
@@ -42,6 +43,8 @@ Persistent class to hold Widgets</Description>
 	set jsonReturn.Price			= ..Price
 	set jsonReturn.Quantity 		= ..Quantity
 	
+	
+	if traverseRelationships {
 	set accessorykey = ""
     set accessoryList = []
       Do {
@@ -49,6 +52,7 @@ Persistent class to hold Widgets</Description>
           If (accLink '= "") { do accessoryList.%Push(accLink.Accessory.toJSON()) }
       } While (accessorykey '= "")
       set jsonReturn.Accessories = accessoryList
+	}
 	
 	quit jsonReturn
 ]]></Implementation>
