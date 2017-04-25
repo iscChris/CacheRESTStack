@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Export generator="Cache" version="25" zv="Cache for Windows (x86-64) 2016.2 (Build 736U)" ts="2017-04-24 10:03:34">
+<Export generator="Cache" version="25" zv="Cache for Windows (x86-64) 2016.2 (Build 736U)" ts="2017-04-25 14:37:00">
 <Class name="User.Widget">
 <Description>
 Persistent class to hold Widgets</Description>
 <Super>%Persistent</Super>
-<TimeChanged>64397,34758.749376</TimeChanged>
+<TimeChanged>64398,48685.769608</TimeChanged>
 <TimeCreated>64394,30328.233029</TimeCreated>
 
 <Property name="Name">
@@ -55,6 +55,24 @@ Persistent class to hold Widgets</Description>
 	}
 	
 	quit jsonReturn
+]]></Implementation>
+</Method>
+
+<Method name="fromJSON">
+<FormalSpec>json:%String</FormalSpec>
+<ReturnType>%String</ReturnType>
+<Implementation><![CDATA[
+	
+	set jsonObj = {}.%FromJSON(json)
+	 
+    set propsIterator = jsonObj.%GetIterator()
+    While (propsIterator.%GetNext(.key,.value)) {
+          if ((key="Name")||(key="Description")||(key="Price")||(key="Quantity")){
+	             Set $PROPERTY($this, key) = value
+	          }
+         }
+         
+	quit ..%Save()
 ]]></Implementation>
 </Method>
 
