@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Export generator="Cache" version="25" zv="Cache for Windows (x86-64) 2016.2 (Build 736U)" ts="2017-04-24 08:54:15">
+<Export generator="Cache" version="25" zv="Cache for Windows (x86-64) 2016.2 (Build 736U)" ts="2017-04-28 19:39:42">
 <CSP name="Welcome.csp" application="/widgetsdirect/"><![CDATA[
 <html ng-app="WidgetsDirect">
 <head>
@@ -29,7 +29,7 @@
         <md-button class="md-raised md-primary" ng-click="sortAsc=!sortAsc" flex>Reorder</md-button>
         </div>
         <!-- List of Widgets starts here -->    
-		<md-card ng-repeat="widget in widgets | filter : widgetFilterText |  orderBy: !sortAsc ? 'Id' : '-Id'">
+		<md-card ng-repeat="widget in widgets | filter : widgetFilterText |  orderBy: !sortAsc ? 'Id' : '-Id'" ng-controller="WidgetController">
          <md-card-header>
           <md-card-avatar>
            <img src="img/logo.svg"/>
@@ -40,7 +40,7 @@
             <span class="md-subhead">There are {{widget.Accessories.length}} compatible accessories </span>
           </md-card-header-text>
          </md-card-header>
-         <md-card-content>
+         <md-card-content ng-click="editWidget($event,widget)">
           <p>
             {{widget.Description}}
           </p>
@@ -57,7 +57,8 @@
 <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
 <!--User Libraries -->
 <script src="widgetmaster.js"></script>		
-<script src="modules/page/pageController.js"></script>		
+<script src="modules/page/pageController.js"></script>
+<script src="modules/widget/WidgetController.js"></script>		
 </body>
  
 </html>
