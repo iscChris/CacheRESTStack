@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Export generator="Cache" version="25" zv="Cache for Windows (x86-64) 2016.2 (Build 736U)" ts="2017-04-24 08:51:41">
+<Export generator="Cache" version="25" zv="Cache for Windows (x86-64) 2016.2 (Build 736U)" ts="2017-05-08 13:07:11">
 <Class name="Data.PopulateWidgets">
 <Description>
 This is a class to populate some example data</Description>
 <Super>%RegisteredObject</Super>
-<TimeChanged>64397,31739.055883</TimeChanged>
+<TimeChanged>64410,66081.82476</TimeChanged>
 <TimeCreated>64394,34484.227801</TimeCreated>
 
 <Method name="CreateWidgets">
@@ -131,6 +131,43 @@ This is a class to populate some example data</Description>
 	d link.WidgetSetObjectId(5)
 	d link.AccessorySetObjectId(3) 	
 	w link.%Save()
+]]></Implementation>
+</Method>
+
+<Method name="CreateWWWidgets">
+<ClassMethod>1</ClassMethod>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	
+	
+	set widgetObj 				= ##class(User.WWWidget).%New()
+	set widgetObj.WidgetName 			= "Widget of Power" 
+	set widgetObj.Summary 	= "This widget provides 110V60 or 230V50" 
+	set widgetObj.Cost			= 40.99
+	set widgetObj.StockLevel		= 40
+	set widgetObj.Barcode  = "50011001104"
+	set widgetObj.Location = "HQ"
+	do widgetObj.%Save()
+	
+	set widgetObj 				= ##class(User.WWWidget).%New()
+	set widgetObj.WidgetName 			= "Widget of Speed" 
+	set widgetObj.Summary 	= "This widget can travel at 143mph" 
+	set widgetObj.Cost			= 140.99
+	set widgetObj.StockLevel		= 87
+	set widgetObj.Barcode  = "50011001105"
+	set widgetObj.Location = "HQ"
+	do widgetObj.%Save()
+	
+	set widgetObj 				= ##class(User.WWWidget).%New()
+	set widgetObj.WidgetName 			= "Widget of Light" 
+	set widgetObj.Summary 	= "This widget can provide 10000 Candlepower" 
+	set widgetObj.Cost			= 50.99
+	set widgetObj.StockLevel		= 54
+	set widgetObj.Barcode  = "50011001106"
+	set widgetObj.Location = "HQ"
+	do widgetObj.%Save()
+	
+	QUIT $$$OK
 ]]></Implementation>
 </Method>
 </Class>

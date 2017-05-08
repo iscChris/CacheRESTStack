@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25" zv="Cache for Windows (x86-64) 2016.2 (Build 736U)" ts="2017-05-08 13:06:02">
+<Class name="User.WWWidget">
+<Description>
+Import of WWWidget database</Description>
+<Super>%Persistent</Super>
+<TimeChanged>64410,70200.339494</TimeChanged>
+<TimeCreated>64410,65617.350753</TimeCreated>
+
+<Property name="WidgetName">
+<Type>%String</Type>
+</Property>
+
+<Property name="Summary">
+<Type>%String</Type>
+</Property>
+
+<Property name="StockLevel">
+<Type>%Integer</Type>
+</Property>
+
+<Property name="Cost">
+<Type>%Currency</Type>
+</Property>
+
+<Property name="Barcode">
+<Type>%String</Type>
+</Property>
+
+<Property name="Location">
+<Type>%String</Type>
+</Property>
+
+<Method name="toJSON">
+<FormalSpec>traverseRelationships:%Boolean=0</FormalSpec>
+<ReturnType>%String</ReturnType>
+<Implementation><![CDATA[
+	
+	set jsonReturn = {}
+	set jsonReturn.Id 				= "W"_..%Id()
+	set jsonReturn.Name 			= ..WidgetName
+	set jsonReturn.Description 		= ..Summary
+	set jsonReturn.Price			= ..Cost
+	set jsonReturn.Quantity 		= ..StockLevel
+	set jsonReturn.Barcode 			= ..Barcode
+	set jsonReturn.Location			= ..Location
+	
+	quit jsonReturn
+]]></Implementation>
+</Method>
+
+<Method name="fromJSON">
+<FormalSpec>json:%String</FormalSpec>
+<ReturnType>%String</ReturnType>
+<Implementation><![CDATA[
+	
+	set jsonObj = {}.%FromJSON(json)
+	 
+    set propsIterator = jsonObj.%GetIterator()
+    While (propsIterator.%GetNext(.key,.value)) {
+          if (key="Name"){
+	            set ..WidgetName=value
+	       } elseif (key="Description"){
+		       set ..Summary=value
+		   } elseif (key="Price"){
+		       set ..Cost=value
+		   } elseif (key="Quantity"){
+		       set ..StockLevel=value
+		   } elseif ((key="Barcode")||(key="Location")){
+		      Set $PROPERTY($this, key) = value
+		   }
+		   
+	         
+         }
+         
+	quit ..%Save()
+]]></Implementation>
+</Method>
+
+<Storage name="Default">
+<Type>%Library.CacheStorage</Type>
+<DataLocation>^User.WWWidgetD</DataLocation>
+<DefaultData>WWWidgetDefaultData</DefaultData>
+<IdLocation>^User.WWWidgetD</IdLocation>
+<IndexLocation>^User.WWWidgetI</IndexLocation>
+<StreamLocation>^User.WWWidgetS</StreamLocation>
+<Data name="WWWidgetDefaultData">
+<Value name="1">
+<Value>%%CLASSNAME</Value>
+</Value>
+<Value name="2">
+<Value>WidgetName</Value>
+</Value>
+<Value name="3">
+<Value>Summary</Value>
+</Value>
+<Value name="4">
+<Value>StockLevel</Value>
+</Value>
+<Value name="5">
+<Value>Cost</Value>
+</Value>
+<Value name="6">
+<Value>Barcode</Value>
+</Value>
+<Value name="7">
+<Value>Location</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+</Export>
